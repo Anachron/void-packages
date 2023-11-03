@@ -1,0 +1,34 @@
+# Template file for 'zig0.11'
+pkgname=zig0.11
+version=0.11.0
+revision=0
+archs="x86_64"
+#build_style=fetch
+#build_style=cmake
+#configure_args="-DZIG_TARGET_MCPU=baseline"
+#make_cmd=make
+# we add xml2, zstd, zlib and ncurses
+# because our lld is static-only and requires those to work
+#makedepends="clang llvm15 lld-devel libxml2-devel libzstd-devel ncurses-devel zlib-devel"
+short_desc="Programming language designed for robustness, optimality, and clarity"
+maintainer="Isaac Freund <mail@isaacfreund.com>"
+license="MIT"
+homepage="https://ziglang.org"
+distfiles="https://ziglang.org/download/0.11.0/zig-linux-x86_64-${version}.tar.xz"
+checksum=2d00e789fec4f71790a6e7bf83ff91d564943c5ee843c5fd966efc474b423047
+#nopie=yes
+#nocross=yes
+
+#export CMAKE_GENERATOR="Unix Makefiles"
+
+do_install() {
+  #vmkdir "/usr/local/bin"
+  #vmove zig "usr/local/bin"
+  #vmove lib "usr/local/bin"
+  vbin zig
+  vcopy lib "usr/bin"
+}
+
+post_install() {
+	vlicense LICENSE
+}
