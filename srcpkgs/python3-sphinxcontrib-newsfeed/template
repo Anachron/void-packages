@@ -1,0 +1,16 @@
+# Template file for 'python3-sphinxcontrib-newsfeed'
+pkgname=python3-sphinxcontrib-newsfeed
+_name=sphinxcontrib-newsfeed
+version=0.1.4
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-setuptools_scm"
+#makedepends=""
+#depends=""
+short_desc="News Feed extension for Sphinx"
+maintainer="Anachron <gith@cron.world>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Cyclododecene/newsfeed"
+#changelog=""
+distfiles="https://files.pythonhosted.org/packages/source/${_name::1}/${_name}/${_name}-${version}.tar.gz"
+checksum=f78c865b1a32d249644a9c46f395b547df0dc21ed69b70898d64235b4755efb4

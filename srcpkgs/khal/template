@@ -1,8 +1,8 @@
 # Template file for 'khal'
 pkgname=khal
-version=0.11.3
-revision=2
-build_style=python3-module
+version=0.13.0
+revision=1
+build_style=python3-pep517
 # Tests get the path to the configuration file wrong in an xbps-src chroot
 make_check_args="
  --deselect tests/cli_test.py::test_configure_command
@@ -11,7 +11,8 @@ make_check_args="
 _rundeps="python3-click python3-click-log python3-configobj python3-dateutil
  python3-icalendar python3-pytz python3-tzlocal python3-urwid python3-xdg
  python3-atomicwrites"
-hostmakedepends="python3-setuptools_scm python3-Sphinx python3-sphinxcontrib $_rundeps"
+hostmakedepends="python3-setuptools_scm python3-Sphinx python3-sphinxcontrib
+ python3-sphinxcontrib-newsfeed $_rundeps"
 depends="$_rundeps"
 checkdepends="python3-pytest-xdist python3-freezegun python3-hypothesis
  vdirsyncer $depends"
@@ -20,8 +21,12 @@ maintainer="Anachron <gith@cron.world>"
 license="MIT"
 homepage="http://lostpackets.de/khal/"
 changelog="https://raw.githubusercontent.com/pimutils/khal/master/CHANGELOG.rst"
-distfiles="${PYPI_SITE}/k/khal/khal-${version}.tar.gz"
-checksum=a8ccbcc43fc1dbbc464e53f7f1d99cf15832be43a67f38700e535d99d9c1325e
+distfiles="https://github.com/pimutils/khal/archive/refs/tags/v${version}.tar.gz"
+checksum=58884e56ffc5d1c483165a5b6e23eaf31f8dc2423f340730cc2299e6c45c1119
+
+pre_build() {
+	export SETUPTOOLS_SCM_PRETEND_VERSION="${version}"
+}
 
 post_install() {
 	vlicense COPYING
